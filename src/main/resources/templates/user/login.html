@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录页</title>
+    <link href="../../static/layui/css/layui.css" rel="stylesheet" media="all">
+    <link href="../../static/layui/css/modules/layer/default/layer.css" rel="stylesheet" media="all">
+    <link href="../../static/layui/css/global.css" rel="stylesheet" media="all">
+</head>
+<body style="text-align: center;">
+    <!-- 简单的登录内容，用户名以及密码， 可以用简单的数字认证内容 -->
+    <form class="layui-form" action="">
+        <div class="layui-form-item logindiv">
+            <div class="layui-inline">
+                <label class="layui-form-label"><i class="layui-icon layui-icon-username adminIcon"></i>用户名:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="username" lay-verify="required" lay-reqtext="用户名是必填项" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label"><i class="layui-icon layui-icon-password adminIcon"></i>密码:</label>
+                <div class="layui-input-inline">
+                    <input type="password" name="password" lay-verify="required" lay-reqtext="请输入密码" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="usernameWrapDiv">
+            <div class="submitDiv">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">登录</button>
+            </div>
+        </div>
+    </form>
+</body>
+<script src="../../static/jquery-3.6.0.min.js" charset="utf-8"></script>
+<script src="../../static/layui/layui.js" charset="utf-8"></script>
+<script>
+    function toCenter(){
+        const a = $(document).height() - $('form').height();
+        $('form').css('margin-top', a/2+'px');
+    }
+    window.onresize = toCenter;
+
+    toCenter();
+<!-- 用户登录页面的一些操作 -->
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            //模拟数据登录
+            let username = data.field.username;
+            if(username){
+                localStorage.setItem("user", data.field.username);
+                window.location.href = '../index.html';
+            }
+            return false;
+        });
+    });
+</script>
+</html>

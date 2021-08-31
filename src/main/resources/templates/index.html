@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link href="../static/layui/css/layui.css" rel="stylesheet" media="all">
+    <link href="../static/layui/css/modules/layer/default/layer.css" rel="stylesheet" media="all">
+    <link href="../static/layui/css/global.css" rel="stylesheet" media="all">
+</head>
+<body>
+<!-- 根据用户是否登录来判断对应展示的页面内容， 用户未登录挑战到登录页面，用户登录跳转到内容页面，不同用户显示不同内容-->
+</body>
+<script src="../static/jquery-3.6.0.min.js" charset="utf-8"></script>
+<script src="../static/layui/layui.js" charset="utf-8"></script>
+<script>
+    const user = localStorage.getItem("user");
+    if(user){
+        //前往内容页
+        if(user === 'admin'){
+            //管理员登录 进入用户管理页面
+            window.location.href = "./user/manager.html";
+        }else if(user.indexOf("s")){
+            //查看报表的人员登录，进入报表查询页面
+            window.location.href = "./data/show.html"
+        }else{
+            //数据录入员登录，进入数据录入页面
+            window.location.href = "./user/main.html";
+        }
+    }else{
+        window.location.href = "./user/login.html";
+    }
+</script>
+</html>
